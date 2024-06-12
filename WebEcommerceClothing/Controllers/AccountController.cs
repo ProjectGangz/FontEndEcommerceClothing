@@ -109,5 +109,10 @@ namespace WebEcommerceClothing.Controllers
             // Trả về view đăng ký với model hiện tại nếu dữ liệu không hợp lệ
             return View();
         }
+
+        public IActionResult MyAccount()
+        {
+            return View();
+        }
     }
 }
