@@ -38,30 +38,19 @@ namespace WebEcommerceClothing.Controllers
                         if (reader.Read())
                         {
                             // Lấy giá trị của trường Role từ dữ liệu đọc được
-                            //string role = reader["Role"].ToString();
+                            string role = reader["Role"].ToString();
 
                             // Đăng nhập thành công, chuyển hướng dựa vào vai trò
-                            //if (role == "Customer")
-                            //{
-                            //    return RedirectToAction("Index", "Home");
-                            //}
-                            //else if (role == "Admin")
-                            //{
-                            //    return RedirectToAction("CrudAdmin", "Admin");
-                            //}
-                            //else if (role == "ShopEmployee")
-                            //{
-                            //    return RedirectToAction("CrudShopEmployee", "ShopEmployee");
-                            //}
-
-                            // Đăng nhập thành công, chuyển hướng đến trang Home
-                            return RedirectToAction("Index", "Home");
+                            if (role == "Customer")
+                            {
+                                return RedirectToAction("Index", "Home");
+                            }
                         }
                     }
                 }
             }
             // Đăng nhập không thành công, hiển thị lại view đăng nhập
-            return View(accountModel);
+            return View();
         }
 
         [HttpGet]
@@ -78,11 +67,10 @@ namespace WebEcommerceClothing.Controllers
                 // Lấy chuỗi kết nối từ cấu hình
                 string connectionString = _configuration.GetConnectionString("MyConnectionString");
 
-                // Tạo câu lệnh SQL để chèn dữ liệu vào cơ sở dữ liệu
-                string query = "INSERT INTO Accounts (UserName, Email, Password,Role) VALUES (@UserName, @Email, @Password, @Role )";
+                // Tạo câu lệnh SQL để chèn dữ liệu vào cơ sở dữ liệu, không bao gồm cột Role
+                string query = "INSERT INTO Accounts (UserName, Email, Password) VALUES (@UserName, @Email, @Password)";
 
                 // Thực hiện kết nối và thực thi câu lệnh SQL
-
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -93,8 +81,6 @@ namespace WebEcommerceClothing.Controllers
                         command.Parameters.AddWithValue("@UserName", accountModel.UserName);
                         command.Parameters.AddWithValue("@Email", accountModel.Email);
                         command.Parameters.AddWithValue("@Password", accountModel.Password);
-                        string role = string.IsNullOrEmpty(accountModel.Role) ? "Customer" : accountModel.Role;
-                        command.Parameters.AddWithValue("@Role", role);
 
                         // Thực thi câu lệnh SQL
                         command.ExecuteNonQuery();

@@ -6,7 +6,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow">Home</a>
+                <a href="~/Home/Index" rel="nofollow">Home</a>
                 <span></span> Register
             </div>
         </div>
@@ -22,7 +22,7 @@
                                     <div class="heading_s1">
                                         <h3 class="mb-30">Create an Account</h3>
                                     </div>
-                                    <form method="post" action="RegisterAccount">
+                                    <form method="post" asp-action="RegisterAccount" asp-controller="Account">
                                         <div class="form-group">
                                             <input type="text" required="" name="UserName" placeholder="UserName">
                                         </div>
@@ -42,7 +42,7 @@
                                             <a href="privacy-policy.html"><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-fill-out btn-block hover-up" name="RegisterAccount">Submit &amp; Register</button>
+                                            <button type="submit" class="btn btn-fill-out btn-block hover-up" value="RegisterAccount">Submit &amp; Register</button>
                                         </div>
                                     </form>
                                     <div class="text-muted text-center">Already have an account? <a href="#">Sign in now</a></div>
