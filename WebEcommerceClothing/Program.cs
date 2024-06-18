@@ -1,5 +1,6 @@
 using WebEcommerceClothing.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace WebEcommerceClothing
 {
@@ -16,6 +17,16 @@ namespace WebEcommerceClothing
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionString"));
             });
+            // Add Session services
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            // Add IHttpContextAccessor
+            builder.Services.AddHttpContextAccessor();
 
             var app = builder.Build();
 
@@ -25,6 +36,8 @@ namespace WebEcommerceClothing
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

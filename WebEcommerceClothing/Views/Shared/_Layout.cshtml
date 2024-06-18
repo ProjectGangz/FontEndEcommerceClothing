@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 
 <head>
@@ -47,11 +48,33 @@
                     </div>
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info header-info-right">
+                            <ul>
+                                @if (HttpContextAccessor.HttpContext.Session.GetString("UserName") != null)
+                                {
+                                    <li>
+                                        <i class="fi-rs-user"></i>
+                                        @Html.Raw(HttpContextAccessor.HttpContext.Session.GetString("UserName")) |
+                                        <a href="~/Account/Logout">Log Out</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <i class="fi-rs-key"></i>
+                                        <a href="~/Account/LoginAccount">Log In</a> /
+                                        <a href="~/Account/RegisterAccount">Sign Up</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    @* <div class="col-xl-3 col-lg-4">
+                        <div class="header-info header-info-right">
                             <ul>                                
                                 <li><i class="fi-rs-key"></i><a href="~/Account/LoginAccount">Log In </a>  / <a href="~/Account/RegisterAccount">Sign Up</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> *@
                 </div>
             </div>
         </div>

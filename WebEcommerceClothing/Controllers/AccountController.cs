@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using WebEcommerceClothing.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace WebEcommerceClothing.Controllers
 {
@@ -39,18 +40,37 @@ namespace WebEcommerceClothing.Controllers
                         {
                             // Lấy giá trị của trường Role từ dữ liệu đọc được
                             string role = reader["Role"].ToString();
+                            string name = reader["UserName"].ToString();
 
                             // Đăng nhập thành công, chuyển hướng dựa vào vai trò
+                            HttpContext.Session.SetString("UserName", name);
+                            HttpContext.Session.SetString("Role", role);
                             if (role == "Customer")
                             {
                                 return RedirectToAction("Index", "Home");
+                            }
+                            else if(role == "Admin")
+                            {
+                                return RedirectToAction("CrudAdmin", "Admin");
+                            }
+                            else if (role == "Seller")
+                            {
+                                return RedirectToAction("CrudSeller", "Seller");
                             }
                         }
                     }
                 }
             }
-            // Đăng nhập không thành công, hiển thị lại view đăng nhập
-            return View();
+            ModelState.AddModelError("", "Email hoặc mật khẩu không đúng.");
+            return View(accountModel);
+        }
+        public IActionResult Logout()
+        {
+            // Clear the session
+            HttpContext.Session.Clear();
+
+            // Redirect to the login page
+            return RedirectToAction("LoginAccount");
         }
 
         [HttpGet]
@@ -97,6 +117,14 @@ namespace WebEcommerceClothing.Controllers
         }
 
         public IActionResult MyAccount()
+        {
+            return View();
+        }
+        public IActionResult CrudAdmin() 
+        {
+            return View();
+        }
+        public IActionResult CrudShopEmployee()
         {
             return View();
         }
