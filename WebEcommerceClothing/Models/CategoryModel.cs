@@ -10,8 +10,9 @@ namespace WebEcommerceClothing.Models
 		[Required]
 		[MaxLength(100)]
 		public string CategoryName { get; set; }
+
         [Required]
         public string CategoryDescription { get; set; }
-
+		
 	}
 }
