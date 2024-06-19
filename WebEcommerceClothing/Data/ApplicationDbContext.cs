@@ -10,5 +10,9 @@ namespace WebEcommerceClothing.Data
 
         }
         public DbSet<AccountModel> Accounts { get; set; }
-    }
+
+		public DbSet<CategoryModel> Category { get; set; }
+
+        public DbSet<ProductModel> Products { get; set; }
+	}
 }

@@ -51,11 +51,11 @@ namespace WebEcommerceClothing.Controllers
                             }
                             else if(role == "Admin")
                             {
-                                return RedirectToAction("CrudAdmin", "Admin");
+                                return RedirectToAction("TemplateAdmin", "Admin");
                             }
                             else if (role == "Seller")
                             {
-                                return RedirectToAction("CrudSeller", "Seller");
+                                return RedirectToAction("CrudSeller", "Crud");
                             }
                         }
                     }
@@ -117,14 +117,6 @@ namespace WebEcommerceClothing.Controllers
         }
 
         public IActionResult MyAccount()
-        {
-            return View();
-        }
-        public IActionResult CrudAdmin() 
-        {
-            return View();
-        }
-        public IActionResult CrudShopEmployee()
         {
             return View();
         }

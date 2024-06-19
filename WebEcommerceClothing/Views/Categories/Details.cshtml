@@ -1,0 +1,15 @@
+﻿@model WebEcommerceClothing.Models.CategoryModel
+@{
+    ViewData["Title"] = "DetailsCategoty";
+}
+
+<h1>Details</h1>
+<div>
+    <h4>Category ID: @Model.CategoryID</h4>
+    <h4>Category Name: @Model.CategoryName</h4>
+    <h4>Category Description: @Model.CategoryDescription</h4>
+</div>
+
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>
