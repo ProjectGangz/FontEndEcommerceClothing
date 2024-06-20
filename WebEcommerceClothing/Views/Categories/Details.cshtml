@@ -1,15 +1,34 @@
 ﻿@model WebEcommerceClothing.Models.CategoryModel
 @{
+    Layout = "~/Views/Shared/_LayoutCRUD.cshtml";
     ViewData["Title"] = "DetailsCategoty";
 }
-
-<h1>Details</h1>
-<div>
-    <h4>Category ID: @Model.CategoryID</h4>
-    <h4>Category Name: @Model.CategoryName</h4>
-    <h4>Category Description: @Model.CategoryDescription</h4>
+<div class="m-4 p-5 my-custom-class">
+    <div class="custom-out-form">
+        <h1 class="text-center text-light">Details</h1>
+        <hr>
+        <div class="custom-form-container">
+            <table class="table">
+                <thead>
+                    <tr class="text-info">
+                        <td>Category ID</td>
+                        <td>Category Name:</td>
+                        <td>Category Description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-info">
+                        <td>@Model.CategoryID</td>
+                        <td>@Model.CategoryName</td>
+                        <td>@Model.CategoryDescription</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                <a class ="btn btn-success" asp-action="Index">Back to List</a>
+            </p>
+        </div>
+    </div>
 </div>
 
-<p>
-    <a asp-action="Index">Back to List</a>
-</p>
+

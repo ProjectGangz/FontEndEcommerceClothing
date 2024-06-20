@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using WebEcommerceClothing.Models;
-
+using Microsoft.Extensions.Configuration;
 namespace WebEcommerceClothing.Controllers
 {
     public class CategoriesController : Controller
@@ -69,7 +69,9 @@ namespace WebEcommerceClothing.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(CategoryModel category)
         {
-            if (ModelState.IsValid)
+			// Exclude validation for the Products property
+			ModelState.Remove("Products");
+			if (ModelState.IsValid)
             {
 
                 string connectionString = _configuration.GetConnectionString("MyConnectionString");
@@ -84,6 +86,7 @@ namespace WebEcommerceClothing.Controllers
                     command.Parameters.AddWithValue("@Description", category.CategoryDescription);
                     command.ExecuteNonQuery();
                     connection.Close();
+                    
                 }
                 
                 return RedirectToAction(nameof(Index));

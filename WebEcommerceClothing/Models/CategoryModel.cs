@@ -13,6 +13,6 @@ namespace WebEcommerceClothing.Models
 
         [Required]
         public string CategoryDescription { get; set; }
-		
+		public List<ProductModel> Products { get; set; }
 	}
 }

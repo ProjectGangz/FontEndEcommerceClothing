@@ -3,31 +3,34 @@
 @using Microsoft.AspNetCore.Mvc.Rendering
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
+    
     Layout = "~/Views/Shared/_LayoutCRUD.cshtml";
 }
-<div class="m-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h1 class="text-center">Create New Category</h1>
+<div class="m-4 p-5 my-custom-class">
+    <!-- Added class name "my-custom-class" -->
+    <div class="custom-out-form">          
+                <h1 class="text-center text-light">Create New Category</h1>
                 <hr>
-                <form asp-action="Create" asp-controller="Categories" method="post">
-                    <div class="form-group">
-                        <label asp-for="CategoryName">Category Name</label>
-                        <input asp-for="CategoryName" class="form-control" />
-                        <span asp-validation-for="CategoryName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="CategoryDescription">Category Description</label>
-                        <input asp-for="CategoryDescription" class="form-control" />
-                        <span asp-validation-for="CategoryDescription" class="text-danger"></span>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary" value="Create">Create</button>
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                    </div>
-                </form>
-            </div>
-        </div>
+                <div class="custom-form-container">
+                    <form class="custom-form" asp-action="Create" asp-controller="Categories" method="post">
+                        <div class="custom-form-group">
+                            <label asp-for="CategoryName" class="form-label">Category Name</label>
+                            <input asp-for="CategoryName" class="form-control" />
+                            <span asp-validation-for="CategoryName" class="text-danger"></span>
+                        </div>
+                        <div class="custom-form-group">
+                            <label asp-for="CategoryDescription" class="form-label">Category Description</label>
+                            <input asp-for="CategoryDescription" class="form-control" />
+                            <span asp-validation-for="CategoryDescription" class="text-danger"></span>
+                        </div>
+                        <div class="custom-form-group-button text-center">
+                            <button type="submit" class="custom-form-submit-btn" value="Create">Create</button>
+                            <a asp-action="Index" asp-asp-controller="Categories" class="custom-form-submit-btn">Back to List</a>
+                        </div>
+                    </form>
+                </div>                             
     </div>
 </div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

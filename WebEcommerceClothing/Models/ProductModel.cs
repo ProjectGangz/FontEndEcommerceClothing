@@ -33,6 +33,6 @@ namespace WebEcommerceClothing.Models
 		public int Quantity { get; set; }
 
 		// Navigation property
-		public virtual CategoryModel Category { get; set; }
+		
 	}
 }

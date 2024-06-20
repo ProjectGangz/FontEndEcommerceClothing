@@ -29,7 +29,7 @@ namespace WebEcommerceClothing.Controllers
 					ProductModel product = new ProductModel
 					{
 						ProductID = (int)reader["ProductID"],
-						CategoryID = (int)reader["CategoryID"],
+						
 						ProductName = reader["ProductName"].ToString(),
 						ProductDescription = reader["ProductDescription"].ToString(),
 						Price = (decimal)reader["Price"],
